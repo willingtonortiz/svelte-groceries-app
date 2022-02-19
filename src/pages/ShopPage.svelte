@@ -1,5 +1,6 @@
 <script lang="ts">
   import ProductsRow from '../components/organisms/ProductsRow.svelte';
+  import Title from '../components/molecules/Title.svelte';
 
   let products = [
     {
@@ -40,6 +41,10 @@
   ];
 </script>
 
-<div>
+<div class="h-full">
+  <Title title="Exclusive Offer" link="See all" />
+  <ProductsRow {products} on:onAdd={(data) => console.log(data.detail)} />
+
+  <Title title="Best Selling" link="See all" />
   <ProductsRow {products} on:onAdd={(data) => console.log(data.detail)} />
 </div>

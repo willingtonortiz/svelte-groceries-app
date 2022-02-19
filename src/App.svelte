@@ -1,15 +1,11 @@
 <script lang="ts">
-  import NavigationBar from './components/molecules/NavigationBar.svelte';
-  import HomePage from './pages/HomePage.svelte';
+  import { Router, Route } from 'svelte-navigator';
+  import HomeLayout from './modules/layouts/HomeLayout.svelte';
 </script>
 
-<main class="h-full bg-gray-200 relative">
-  <HomePage />
-
-  <div class="absolute bottom-0 w-full">
-    <NavigationBar />
-  </div>
-</main>
+<Router>
+  <Route component={HomeLayout} />
+</Router>
 
 <style lang="postcss" global>
   @tailwind base;
