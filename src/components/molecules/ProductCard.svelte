@@ -18,7 +18,9 @@
 <div
   class="w-40 p-3 bg-white border-gray-300 border rounded-2xl flex flex-col items-center"
 >
-  <img class="w-24" src={imageUrl} alt={name} />
+  <div class="w-24 h-20">
+    <img src={imageUrl} alt={name} />
+  </div>
 
   <p class="w-full mt-2 text-base font-bold">{name}</p>
 

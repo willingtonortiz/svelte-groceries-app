@@ -1,50 +1,51 @@
 <script lang="ts">
   import ProductsRow from '../components/organisms/ProductsRow.svelte';
   import Title from '../components/molecules/Title.svelte';
+  import {
+    EXCLUSIVE_OFFER_PRODUCTS,
+    BEST_SELLING_PRODUCTS,
+    GROCERIES_PRODUCTS,
+    PRODUCT_CATEGORIES,
+  } from '../core/mock_data';
+  import ProductCategoryRow from '../components/molecules/ProductCategoryRow.svelte';
+  import Input from '../components/atoms/Input.svelte';
+  import BannerCarrousel from '../components/molecules/BannerCarrousel.svelte';
 
-  let products = [
-    {
-      id: '01',
-      imageUrl: 'https://via.placeholder.com/400',
-      name: 'Organic Bananas',
-      amount: '7pcs, Priceg',
-      price: '$4.99',
-    },
-    {
-      id: '02',
-      imageUrl: 'https://via.placeholder.com/400',
-      name: 'Red Apple',
-      amount: '1kg, Priceg',
-      price: '$4.99',
-    },
-    {
-      id: '03',
-      imageUrl: 'https://via.placeholder.com/400',
-      name: 'Bell Pepper Red',
-      amount: '1kg, Priceg',
-      price: '$4.99',
-    },
-    {
-      id: '04',
-      imageUrl: 'https://via.placeholder.com/400',
-      name: 'Ginger',
-      amount: '250gm, Priceg',
-      price: '$4.99',
-    },
-    {
-      id: '05',
-      imageUrl: 'https://via.placeholder.com/400',
-      name: 'Beef Bone',
-      amount: '1kg, Priceg',
-      price: '$4.99',
-    },
-  ];
+  const exclusiveOfferProducts = EXCLUSIVE_OFFER_PRODUCTS;
+  const bestSellingProducts = BEST_SELLING_PRODUCTS;
+  const groceriesProducts = GROCERIES_PRODUCTS;
+
+  const productCategories = PRODUCT_CATEGORIES;
 </script>
 
 <div class="h-full">
+  <div class="m-4 flex justify-center">
+    <img src="images/logo.png" alt="logo" />
+  </div>
+
+  <Input class="m-4" />
+
+  <BannerCarrousel
+    class="m-4"
+    images={['images/banner.png', 'images/banner.png', 'images/banner.png']}
+  />
+
   <Title title="Exclusive Offer" link="See all" />
-  <ProductsRow {products} on:onAdd={(data) => console.log(data.detail)} />
+  <ProductsRow
+    products={exclusiveOfferProducts}
+    on:onAdd={(data) => console.log(data.detail)}
+  />
 
   <Title title="Best Selling" link="See all" />
-  <ProductsRow {products} on:onAdd={(data) => console.log(data.detail)} />
+  <ProductsRow
+    products={bestSellingProducts}
+    on:onAdd={(data) => console.log(data.detail)}
+  />
+
+  <Title title="Groceries" link="See all" />
+  <ProductCategoryRow categories={productCategories} class="my-4" />
+  <ProductsRow
+    products={groceriesProducts}
+    on:onAdd={(data) => console.log(data.detail)}
+  />
 </div>
