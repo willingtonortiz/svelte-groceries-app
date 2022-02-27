@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { slide } from 'svelte/transition';
   import IoIosArrowDown from 'svelte-icons/io/IoIosArrowDown.svelte';
   import IoIosArrowForward from 'svelte-icons/io/IoIosArrowForward.svelte';
 
@@ -24,6 +25,8 @@
   </div>
 
   {#if show}
-    <slot name="content" />
+    <div transition:slide>
+      <slot name="content" />
+    </div>
   {/if}
 </div>

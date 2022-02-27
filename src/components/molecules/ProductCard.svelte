@@ -34,7 +34,7 @@
   <div class="w-full flex flex-row justify-between items-center">
     <p class="font-bold">{price}</p>
 
-    <div class="bg-green-600 w-10 text-white rounded-xl" on:click={onAdd}>
+    <div class="bg-primary w-10 text-white rounded-xl" on:click={onAdd}>
       <IoIosAdd />
     </div>
   </div>

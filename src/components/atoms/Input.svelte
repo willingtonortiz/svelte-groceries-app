@@ -1,5 +1,7 @@
 <script lang="ts">
+  import { scale } from 'svelte/transition';
   import IoIosSearch from 'svelte-icons/io/IoIosSearch.svelte';
+  export let placeholder = '';
 </script>
 
 <div
@@ -12,6 +14,7 @@
   <input
     class="w-full bg-transparent text-sm text-gray-800"
     type="text"
-    placeholder="Search Store"
+    {placeholder}
+    on:input
   />
 </div>

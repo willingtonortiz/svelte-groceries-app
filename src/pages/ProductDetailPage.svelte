@@ -3,8 +3,6 @@
   import { useNavigate } from 'svelte-navigator';
   import IoIosHeartEmpty from 'svelte-icons/io/IoIosHeartEmpty.svelte';
   import MdChevronLeft from 'svelte-icons/md/MdChevronLeft.svelte';
-  const navigate = useNavigate();
-
   import Button from '../components/atoms/Button.svelte';
   import Chip from '../components/atoms/Chip.svelte';
   import Divider from '../components/atoms/Divider.svelte';
@@ -13,6 +11,7 @@
   import ProductCounter from '../components/molecules/ProductCounter.svelte';
   import type { Product } from '../core/domain/models/product.model';
   import { ALL_PRODUCTS } from '../core/mock_data';
+  const navigate = useNavigate();
 
   export let id = '';
   export let product: Product = {

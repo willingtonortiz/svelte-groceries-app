@@ -4,18 +4,14 @@
   import NavigationBar from '../../components/molecules/NavigationBar.svelte';
   import ShopPage from '../../pages/ShopPage.svelte';
   import Redirect from '../../components/molecules/Redirect.svelte';
-  import ProductDetailPage from '../../pages/ProductDetailPage.svelte';
+  import ExplorePage from '../../pages/ExplorePage.svelte';
 </script>
 
 <Page>
   <div slot="content">
     <Route path="shop" component={ShopPage} />
 
-    <Route path="explore">
-      <div class="h-full flex justify-center items-center">
-        <h1>Explore Page</h1>
-      </div>
-    </Route>
+    <Route path="explore" component={ExplorePage} />
 
     <Route path="cart">
       <div class="h-full flex justify-center items-center">

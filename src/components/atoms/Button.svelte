@@ -4,8 +4,7 @@
 
 <button
   on:click
-  class="min-w-max py-4 bg-green-600 text-white rounded-2xl {$$props.class ??
-    ''}"
+  class="min-w-max py-4 bg-primary text-white rounded-2xl {$$props.class ?? ''}"
 >
   {label}
 </button>

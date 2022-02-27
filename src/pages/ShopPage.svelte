@@ -30,7 +30,7 @@
     <img src="images/logo.png" alt="logo" />
   </div>
 
-  <Input class="m-4" />
+  <Input class="m-4" placeholder="Search Store" />
 
   <BannerCarrousel
     class="m-4"

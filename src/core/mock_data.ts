@@ -1,3 +1,4 @@
+import type { Category } from './domain/models/category.model';
 import type { Product } from './domain/models/product.model';
 
 const banana: Product = {
@@ -91,7 +92,11 @@ export const GROCERIES_PRODUCTS: Product[] = [
   ginger,
 ];
 
-const pulsesCategory = { name: 'Pulses', imageUrl: 'images/pulses.png' };
-const RiceCategory = { name: 'Rice', imageUrl: 'images/rice.png' };
+const pulsesCategory: Category = {
+  id: '01',
+  name: 'Pulses',
+  imageUrl: 'images/pulses.png',
+};
+const RiceCategory = { id: '02', name: 'Rice', imageUrl: 'images/rice.png' };
 
 export const PRODUCT_CATEGORIES = [pulsesCategory, RiceCategory];
