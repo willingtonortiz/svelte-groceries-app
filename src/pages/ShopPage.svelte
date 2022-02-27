@@ -1,21 +1,28 @@
 <script lang="ts">
-  import ProductsRow from '../components/organisms/ProductsRow.svelte';
-  import Title from '../components/molecules/Title.svelte';
+  import { useNavigate } from 'svelte-navigator';
   import {
     EXCLUSIVE_OFFER_PRODUCTS,
     BEST_SELLING_PRODUCTS,
     GROCERIES_PRODUCTS,
     PRODUCT_CATEGORIES,
   } from '../core/mock_data';
+  import ProductsRow from '../components/organisms/ProductsRow.svelte';
+  import Title from '../components/molecules/Title.svelte';
   import ProductCategoryRow from '../components/molecules/ProductCategoryRow.svelte';
   import Input from '../components/atoms/Input.svelte';
   import BannerCarrousel from '../components/molecules/BannerCarrousel.svelte';
+
+  const navigate = useNavigate();
 
   const exclusiveOfferProducts = EXCLUSIVE_OFFER_PRODUCTS;
   const bestSellingProducts = BEST_SELLING_PRODUCTS;
   const groceriesProducts = GROCERIES_PRODUCTS;
 
   const productCategories = PRODUCT_CATEGORIES;
+
+  const onProductClicked = ({ detail }: CustomEvent) => {
+    navigate(`/products/${detail.id}`);
+  };
 </script>
 
 <div class="h-full">
@@ -33,19 +40,13 @@
   <Title title="Exclusive Offer" link="See all" />
   <ProductsRow
     products={exclusiveOfferProducts}
-    on:onAdd={(data) => console.log(data.detail)}
+    on:onClick={onProductClicked}
   />
 
   <Title title="Best Selling" link="See all" />
-  <ProductsRow
-    products={bestSellingProducts}
-    on:onAdd={(data) => console.log(data.detail)}
-  />
+  <ProductsRow products={bestSellingProducts} on:onClick={onProductClicked} />
 
   <Title title="Groceries" link="See all" />
   <ProductCategoryRow categories={productCategories} class="my-4" />
-  <ProductsRow
-    products={groceriesProducts}
-    on:onAdd={(data) => console.log(data.detail)}
-  />
+  <ProductsRow products={groceriesProducts} on:onClick={onProductClicked} />
 </div>

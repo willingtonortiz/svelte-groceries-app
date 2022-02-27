@@ -4,6 +4,7 @@
   import NavigationBar from '../../components/molecules/NavigationBar.svelte';
   import ShopPage from '../../pages/ShopPage.svelte';
   import Redirect from '../../components/molecules/Redirect.svelte';
+  import ProductDetailPage from '../../pages/ProductDetailPage.svelte';
 </script>
 
 <Page>

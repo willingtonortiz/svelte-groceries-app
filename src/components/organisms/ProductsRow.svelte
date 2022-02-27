@@ -24,6 +24,7 @@
           name={product.name}
           price={product.price}
           amount={product.amount}
+          on:onClick
           on:onAdd
         />
       </div>

@@ -10,6 +10,10 @@
   export let amount = '7pcs, Priceg';
   export let price = '$4.99';
 
+  const onClick = () => {
+    dispatch('onClick', { id });
+  };
+
   const onAdd = () => {
     dispatch('onAdd', { id });
   };
@@ -17,6 +21,7 @@
 
 <div
   class="w-40 p-3 bg-white border-gray-300 border rounded-2xl flex flex-col items-center"
+  on:click={onClick}
 >
   <div class="w-24 h-20">
     <img src={imageUrl} alt={name} />
