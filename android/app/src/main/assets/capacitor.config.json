@@ -1,0 +1,6 @@
+{
+	"appId": "com.wjom.groceries",
+	"appName": "groceries-app",
+	"webDir": "public",
+	"bundledWebRuntime": false
+}
