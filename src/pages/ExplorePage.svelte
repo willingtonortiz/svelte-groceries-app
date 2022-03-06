@@ -33,7 +33,12 @@
   <Header class="m-4" title="Find Products" />
 
   <div class="m-4 flex flex-row items-center">
-    <Input class="w-full" placeholder="Search Store" on:input={onInputType} />
+    <Input
+      class="w-full"
+      placeholder="Search Store"
+      clearText
+      on:input={onInputType}
+    />
 
     {#if showFilters}
       <div class="ml-4 w-6" on:click={openFilters} transition:slide>

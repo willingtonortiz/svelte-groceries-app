@@ -8,7 +8,7 @@ const banana: Product = {
   description:
     'Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.',
   amount: '7pcs, Priceg',
-  price: '$4.99',
+  price: 4.99,
 };
 const apple: Product = {
   id: '02',
@@ -17,7 +17,7 @@ const apple: Product = {
   description:
     'Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.',
   amount: '1kg, Priceg',
-  price: '$4.99',
+  price: 4.99,
 };
 const bellPepper: Product = {
   id: '03',
@@ -26,7 +26,7 @@ const bellPepper: Product = {
   description:
     'Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.',
   amount: '1kg, Priceg',
-  price: '$4.99',
+  price: 4.99,
 };
 const ginger: Product = {
   id: '04',
@@ -35,7 +35,7 @@ const ginger: Product = {
   description:
     'Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.',
   amount: '250gm, Priceg',
-  price: '$4.99',
+  price: 4.99,
 };
 const beefBone: Product = {
   id: '05',
@@ -44,7 +44,7 @@ const beefBone: Product = {
   description:
     'Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.',
   amount: '1kg, Priceg',
-  price: '$4.99',
+  price: 4.99,
 };
 const broilerChicken: Product = {
   id: '06',
@@ -53,7 +53,7 @@ const broilerChicken: Product = {
   description:
     'Apples are nutritious. Apples may be good for weight loss. apples may be good for your heart. As part of a healtful and varied diet.',
   amount: '1kg, Priceg',
-  price: '$4.99',
+  price: 4.99,
 };
 
 export const ALL_PRODUCTS: Product[] = [
