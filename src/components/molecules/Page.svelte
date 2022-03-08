@@ -1,6 +1,4 @@
-<script lang="ts"></script>
-
-<div class="h-full flex flex-col">
+<div class="h-full flex flex-col {$$props.class ?? ''}">
   <slot name="header" />
 
   <div class="content flex-1 overflow-y-scroll">

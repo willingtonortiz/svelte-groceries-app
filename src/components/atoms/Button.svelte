@@ -21,5 +21,6 @@
 
   <p class="col-start-1 col-span-1 row-start-1 row-span-1 flex-1 text-center">
     {label}
+    <slot />
   </p>
 </button>

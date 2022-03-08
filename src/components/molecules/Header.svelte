@@ -2,10 +2,22 @@
   export let title = '';
 </script>
 
-<div class="h-8 flex justify-between items-center relative {$$props.class}">
-  <slot name="left" />
+<div class="grid grid-cols-1 grid-rows-1 items-center {$$props.class}">
+  <div
+    class="z-10 col-start-1 col-span-1 row-start-1 row-span-1 flex flex-row flex-nowrap justify-between"
+  >
+    <div class="left">
+      <slot name="left" />
+    </div>
 
-  <h1 class="absolute -z-10 w-full text-center font-bold text-xl">{title}</h1>
+    <div class="right">
+      <slot name="right" />
+    </div>
+  </div>
 
-  <slot name="right" />
+  <h1
+    class="z-0 col-start-1 col-span-1 row-start-1 row-span-1 flex-1 text-center font-bold text-xl outline-none"
+  >
+    {title}
+  </h1>
 </div>

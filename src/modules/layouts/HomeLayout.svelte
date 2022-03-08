@@ -7,6 +7,7 @@
   import Redirect from '../../components/molecules/Redirect.svelte';
   import ExplorePage from '../../pages/ExplorePage.svelte';
   import CartPage from '../../pages/CartPage.svelte';
+  import FiltersPage from '../../pages/FiltersPage.svelte';
 </script>
 
 <Page>
@@ -17,10 +18,10 @@
 
     <Route path="cart" component={CartPage} />
 
-    <Route path="favourite">
-      <div class="h-full flex justify-center items-center">
+    <Route path="favourite" component={FiltersPage}>
+      <!-- <div class="h-full flex justify-center items-center">
         <h1>Favourite Page</h1>
-      </div>
+      </div> -->
     </Route>
 
     <Route path="account">
