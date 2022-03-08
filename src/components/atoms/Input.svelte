@@ -21,7 +21,7 @@
   </div>
 
   <input
-    class="w-full bg-transparent text-sm text-gray-800"
+    class="w-full outline-none bg-transparent text-sm text-gray-800"
     type="text"
     {placeholder}
     bind:value

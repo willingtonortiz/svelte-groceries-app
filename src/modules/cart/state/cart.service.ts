@@ -2,10 +2,10 @@ import { ALL_PRODUCTS } from '../../../core/mock_data';
 import { cartQuery } from './cart.query';
 import { cartStore } from './cart.store';
 
-export const addProductToCart = (productId: string) => {
+export const addProductToCart = (productId: string, count: number = 1) => {
   const product = ALL_PRODUCTS.find((product) => product.id === productId);
 
-  cartStore.add({ ...product, count: 1 });
+  cartStore.add({ ...product, count });
 };
 
 export const incrementProductCount = (productId: string) => {

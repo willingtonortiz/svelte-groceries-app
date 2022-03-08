@@ -6,8 +6,21 @@
   const dispatch = createEventDispatcher();
 
   export let count = 0;
-  const increment = () => dispatch('increment', {});
-  const decrement = () => dispatch('decrement', {});
+  export let min: number | undefined = undefined;
+  export let max: number | undefined = undefined;
+
+  const decrement = () => {
+    if (min !== undefined && count - 1 < min) {
+      return;
+    }
+    dispatch('decrement');
+  };
+  const increment = () => {
+    if (max !== undefined && count + 1 > max) {
+      return;
+    }
+    dispatch('increment');
+  };
 </script>
 
 <div class="w-min h-10 flex flex-row flex-nowrap">

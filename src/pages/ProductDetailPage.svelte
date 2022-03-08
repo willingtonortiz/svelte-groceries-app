@@ -1,6 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { useNavigate } from 'svelte-navigator';
+  import type { Product } from '../core/domain/models/product.model';
+  import { ALL_PRODUCTS } from '../core/mock_data';
+  import { addProductToCart } from '../modules/cart/state';
+
   import IoIosHeartEmpty from 'svelte-icons/io/IoIosHeartEmpty.svelte';
   import MdChevronLeft from 'svelte-icons/md/MdChevronLeft.svelte';
   import Button from '../components/atoms/Button.svelte';
@@ -9,8 +13,7 @@
   import Stars from '../components/atoms/Stars.svelte';
   import Accordeon from '../components/molecules/Accordeon.svelte';
   import ProductCounter from '../components/molecules/ProductCounter.svelte';
-  import type { Product } from '../core/domain/models/product.model';
-  import { ALL_PRODUCTS } from '../core/mock_data';
+
   const navigate = useNavigate();
 
   export let id = '';
@@ -19,13 +22,17 @@
     name: '',
     description: '',
     imageUrl: '',
-    amount: '',
-    price: '',
+    detail: '',
+    price: 0,
   };
+  let count = 0;
+  $: totalAmount = (count * product.price).toFixed(2);
 
-  const navigateBack = () => {
-    navigate('/products');
-  };
+  const navigateBack = () => navigate('/products');
+  const onDecrement = () => count--;
+  const onIncrement = () => count++;
+
+  const addProduct = () => addProductToCart(product.id, count);
 
   onMount(() => {
     const foundProduct = ALL_PRODUCTS.find((p) => p.id === id);
@@ -46,7 +53,7 @@
     <div class="flex flex-col">
       <span class="text-xl font-bold">{product.name}</span>
 
-      <span class="text-sm">{product.amount}</span>
+      <span class="text-sm">{product.detail}</span>
     </div>
 
     <div class="w-8">
@@ -55,9 +62,14 @@
   </div>
 
   <div class="m-4 flex justify-between items-center">
-    <ProductCounter />
+    <ProductCounter
+      {count}
+      min={0}
+      on:increment={onIncrement}
+      on:decrement={onDecrement}
+    />
 
-    <span class="text-xl font-bold">{product.price}</span>
+    <span class="text-xl font-bold">${totalAmount}</span>
   </div>
 
   <Divider class="mt-4 mx-4" />
@@ -88,5 +100,5 @@
     <span slot="content" class="mt-2 text-sm">{product.description}</span>
   </Accordeon>
 
-  <Button class="mx-4" label="Add To Basket" />
+  <Button class="m-4" label="Add To Basket" on:click={addProduct} />
 </div>
