@@ -7,8 +7,8 @@
   export let id = '';
   export let imageUrl = 'https://via.placeholder.com/400';
   export let name = 'Organic Bananas';
-  export let amount = '7pcs, Priceg';
-  export let price = '$4.99';
+  export let detail = '7pcs, Priceg';
+  export let price = 0;
 
   const onClick = () => {
     dispatch('onClick', { id });
@@ -29,12 +29,15 @@
 
   <p class="w-full mt-2 text-base font-bold">{name}</p>
 
-  <p class="w-full mb-4 text-sm text-gray-600">{amount}</p>
+  <p class="w-full mb-4 text-sm text-gray-600">{detail}</p>
 
   <div class="w-full flex flex-row justify-between items-center">
     <p class="font-bold">{price}</p>
 
-    <div class="bg-primary w-10 text-white rounded-xl" on:click={onAdd}>
+    <div
+      class="bg-primary w-10 text-white rounded-xl"
+      on:click|stopPropagation={onAdd}
+    >
       <IoIosAdd />
     </div>
   </div>

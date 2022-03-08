@@ -1,17 +1,21 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import IoIosClose from 'svelte-icons/io/IoIosClose.svelte';
-
   import Divider from '../../../../components/atoms/Divider.svelte';
   import ProductCounter from '../../../../components/molecules/ProductCounter.svelte';
 
+  const dispatch = createEventDispatcher();
+
   export let id = '';
-  export let imageUrl = '';
   export let name = '';
-  export let amount = '';
-  export let quantity = 1;
+  export let detail = '';
+  export let imageUrl = '';
+  export let amount = 0;
   export let price = 4.99;
 
-  $: totalPrice = (price * quantity).toFixed(2);
+  $: totalPrice = (price * amount).toFixed(2);
+
+  const onRemove = () => dispatch('onRemove', { productId: id });
 </script>
 
 <div class={$$props.class}>
@@ -20,13 +24,13 @@
 
     <div class="flex flex-col">
       <p class="font-bold">{name}</p>
-      <p class="mb-3 text-sm">{amount}</p>
+      <p class="mb-3 text-sm">{detail}</p>
 
-      <ProductCounter bind:count={quantity} />
+      <ProductCounter bind:count={amount} on:increment on:decrement />
     </div>
 
     <div class="ml-auto flex flex-col justify-between items-end">
-      <div class="w-8 text-gray-400">
+      <div class="w-8 text-gray-400" on:click={onRemove}>
         <IoIosClose />
       </div>
 

@@ -1,16 +1,19 @@
 <script lang="ts">
   import TiPlus from 'svelte-icons/ti/TiPlus.svelte';
   import TiMinus from 'svelte-icons/ti/TiMinus.svelte';
+  import { createEventDispatcher } from 'svelte';
 
-  export let count = 1;
-  const increment = () => count++;
-  const decrement = () => count--;
+  const dispatch = createEventDispatcher();
+
+  export let count = 0;
+  const increment = () => dispatch('increment', {});
+  const decrement = () => dispatch('decrement', {});
 </script>
 
 <div class="w-min h-10 flex flex-row flex-nowrap">
-  <div class="w-10 flex justify-center items-center" on:click={increment}>
+  <div class="w-10 flex justify-center items-center" on:click={decrement}>
     <div class="w-6">
-      <TiPlus />
+      <TiMinus />
     </div>
   </div>
 
@@ -20,9 +23,9 @@
     <span class="text-xl">{count}</span>
   </div>
 
-  <div class="w-10 flex justify-center items-center" on:click={decrement}>
+  <div class="w-10 flex justify-center items-center" on:click={increment}>
     <div class="w-6">
-      <TiMinus />
+      <TiPlus />
     </div>
   </div>
 </div>

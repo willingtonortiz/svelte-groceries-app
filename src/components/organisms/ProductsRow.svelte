@@ -1,16 +1,22 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import { FreeMode } from 'swiper';
   import { Swiper, SwiperSlide } from 'swiper/svelte';
   import 'swiper/css';
-
   import ProductCard from '../molecules/ProductCard.svelte';
+
+  const dispatch = createEventDispatcher();
+
+  const addProduct = (productId: string) => {
+    dispatch('onAdd', { productId });
+  };
 
   export let products: {
     id: string;
     imageUrl: string;
     name: string;
-    amount: string;
-    price: string;
+    price: number;
+    detail: string;
   }[] = [];
 </script>
 
@@ -23,9 +29,8 @@
           imageUrl={product.imageUrl}
           name={product.name}
           price={product.price}
-          amount={product.amount}
           on:onClick
-          on:onAdd
+          on:onAdd={() => addProduct(product.id)}
         />
       </div>
     </SwiperSlide>

@@ -4,12 +4,22 @@
 
 <button
   on:click
-  class="relative min-w-max py-4 bg-primary text-white rounded-2xl flex flex-row justify-between {$$props.class ??
+  class="p-4 min-w-max bg-primary text-white rounded-2xl grid grid-cols-1 grid-rows-1 items-center {$$props.class ??
     ''}"
 >
-  <slot name="start" />
+  <div
+    class="col-start-1 col-span-1 row-start-1 row-span-1 flex flex-row flex-nowrap justify-between"
+  >
+    <div class="left">
+      <slot name="start" />
+    </div>
 
-  <p class="absolute w-full">{label}</p>
+    <div class="right">
+      <slot name="end" />
+    </div>
+  </div>
 
-  <slot name="end" />
+  <p class="col-start-1 col-span-1 row-start-1 row-span-1 flex-1 text-center">
+    {label}
+  </p>
 </button>

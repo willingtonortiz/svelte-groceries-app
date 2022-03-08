@@ -35,7 +35,7 @@
         imageUrl={product.imageUrl}
         name={product.name}
         price={product.price}
-        amount={product.amount}
+        detail={product.detail}
       />
     {/each}
   </div>

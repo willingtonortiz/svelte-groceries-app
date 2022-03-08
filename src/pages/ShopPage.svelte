@@ -11,6 +11,7 @@
   import ProductCategoryRow from '../components/molecules/ProductCategoryRow.svelte';
   import Input from '../components/atoms/Input.svelte';
   import BannerCarrousel from '../components/molecules/BannerCarrousel.svelte';
+  import { addProductToCart } from '../modules/cart/state';
 
   const navigate = useNavigate();
 
@@ -20,9 +21,8 @@
 
   const productCategories = PRODUCT_CATEGORIES;
 
-  const onProductClicked = ({ detail }: CustomEvent) => {
+  const onProductClicked = ({ detail }: CustomEvent) =>
     navigate(`/products/${detail.id}`);
-  };
 </script>
 
 <div class="h-full">
@@ -40,6 +40,7 @@
   <Title title="Exclusive Offer" link="See all" />
   <ProductsRow
     products={exclusiveOfferProducts}
+    on:onAdd={({ detail }) => addProductToCart(detail.productId)}
     on:onClick={onProductClicked}
   />
 
