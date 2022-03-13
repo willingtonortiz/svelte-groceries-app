@@ -1,24 +1,21 @@
 <script lang="ts">
   import { useNavigate } from 'svelte-navigator';
-  import {
-    EXCLUSIVE_OFFER_PRODUCTS,
-    BEST_SELLING_PRODUCTS,
-    GROCERIES_PRODUCTS,
-    PRODUCT_CATEGORIES,
-  } from '../core/mock_data';
+  import { useQuery } from '@sveltestack/svelte-query';
+
   import ProductsRow from '../components/organisms/ProductsRow.svelte';
   import Title from '../components/molecules/Title.svelte';
   import ProductCategoryRow from '../components/molecules/ProductCategoryRow.svelte';
   import Input from '../components/atoms/Input.svelte';
   import BannerCarrousel from '../components/molecules/BannerCarrousel.svelte';
   import { addProductToCart } from '../modules/cart/state';
+  import { PRODUCT_CATEGORIES } from '../core/mock_data';
+  import { getHomeProducts } from '../core/infrastructure/services/products.service';
+  import RowSkeleton from '../components/molecules/RowSkeleton.svelte';
 
   const navigate = useNavigate();
 
-  const exclusiveOfferProducts = EXCLUSIVE_OFFER_PRODUCTS;
-  const bestSellingProducts = BEST_SELLING_PRODUCTS;
-  const groceriesProducts = GROCERIES_PRODUCTS;
-
+  // Queries
+  const homeProducts = useQuery('homeProducts', getHomeProducts);
   const productCategories = PRODUCT_CATEGORIES;
 
   const onProductClicked = ({ detail }: CustomEvent) =>
@@ -38,16 +35,34 @@
   />
 
   <Title title="Exclusive Offer" link="See all" />
-  <ProductsRow
-    products={exclusiveOfferProducts}
-    on:onAdd={({ detail }) => addProductToCart(detail.productId)}
-    on:onClick={onProductClicked}
-  />
+  {#if $homeProducts.isLoading}
+    <RowSkeleton />
+  {:else}
+    <ProductsRow
+      products={$homeProducts.data.exclusive}
+      on:onAdd={({ detail }) => addProductToCart(detail.productId)}
+      on:onClick={onProductClicked}
+    />
+  {/if}
 
   <Title title="Best Selling" link="See all" />
-  <ProductsRow products={bestSellingProducts} on:onClick={onProductClicked} />
+  {#if $homeProducts.isLoading}
+    <RowSkeleton />
+  {:else}
+    <ProductsRow
+      products={$homeProducts.data.bestSelling}
+      on:onClick={onProductClicked}
+    />
+  {/if}
 
   <Title title="Groceries" link="See all" />
   <ProductCategoryRow categories={productCategories} class="my-4" />
-  <ProductsRow products={groceriesProducts} on:onClick={onProductClicked} />
+  {#if $homeProducts.isLoading}
+    <RowSkeleton />
+  {:else}
+    <ProductsRow
+      products={$homeProducts.data.groceries}
+      on:onClick={onProductClicked}
+    />
+  {/if}
 </div>

@@ -20,19 +20,31 @@
   }[] = [];
 </script>
 
-<Swiper modules={[FreeMode]} slidesPerView={2.1} freeMode>
+<Swiper
+  modules={[FreeMode]}
+  slidesPerView={2.3}
+  spaceBetween={10}
+  freeMode
+  class="swiper-container"
+>
   {#each products as product}
     <SwiperSlide>
-      <div class="flex justify-center">
-        <ProductCard
-          id={product.id}
-          imageUrl={product.imageUrl}
-          name={product.name}
-          price={product.price}
-          on:onClick
-          on:onAdd={() => addProduct(product.id)}
-        />
-      </div>
+      <ProductCard
+        id={product.id}
+        imageUrl={product.imageUrl}
+        name={product.name}
+        price={product.price}
+        on:onClick
+        on:onAdd={() => addProduct(product.id)}
+      />
     </SwiperSlide>
   {/each}
+
+  <SwiperSlide />
 </Swiper>
+
+<style>
+  :global(.swiper-container .swiper-wrapper .swiper-slide:first-child) {
+    @apply ml-4;
+  }
+</style>

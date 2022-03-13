@@ -1,22 +1,34 @@
 <script lang="ts">
   import IoIosSearch from 'svelte-icons/io/IoIosSearch.svelte';
   import IoIosCloseCircle from 'svelte-icons/io/IoIosCloseCircle.svelte';
+  import { createEventDispatcher } from 'svelte';
 
   export let placeholder = '';
   export let clearText = false;
   let value = '';
+  const distpatch = createEventDispatcher();
 
   $: showClearText = value && clearText;
 
-  const onClearText = () => {
-    value = '';
+  const onClearText = () => (value = '');
+  const onSearch = () => distpatch('search', { value });
+  const onInput = ({
+    currentTarget,
+  }: InputEvent & { currentTarget: EventTarget & HTMLInputElement }) => {
+    distpatch('input', { value: currentTarget.value });
+  };
+  const onKeyPress = ({ key }: KeyboardEvent) => {
+    if (key === 'Enter') {
+      onSearch();
+    }
   };
 </script>
 
 <div
-  class="p-3 bg-gray-100 rounded-xl flex flex-row flex-nowrap items-center {$$props.class}"
+  class="p-3 bg-gray-100 rounded-xl flex flex-row flex-nowrap items-center {$$props.class ??
+    ''}"
 >
-  <div class="w-6 mr-2">
+  <div class="w-6 mr-2" on:click={onSearch}>
     <IoIosSearch />
   </div>
 
@@ -25,7 +37,9 @@
     type="text"
     {placeholder}
     bind:value
-    on:input
+    on:input={onInput}
+    on:submit={onSearch}
+    on:keypress={onKeyPress}
   />
 
   {#if showClearText}
