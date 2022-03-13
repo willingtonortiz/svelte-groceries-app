@@ -44,7 +44,9 @@
 
   {#if $cartProducts.length > 0}
     <div class="absolute left-0 right-0 bottom-20 mx-6">
-      <Button label="Go to Checkout" class="w-full">
+      <Button class="w-full">
+        Go to Checkout
+
         <Chip
           slot="end"
           label="${$totalAmountOfCartStr}"

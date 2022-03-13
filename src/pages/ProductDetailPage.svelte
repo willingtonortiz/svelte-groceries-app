@@ -100,5 +100,5 @@
     <span slot="content" class="mt-2 text-sm">{product.description}</span>
   </Accordeon>
 
-  <Button class="m-4" label="Add To Basket" on:click={addProduct} />
+  <Button class="m-4" on:click={addProduct}>Add To Basket</Button>
 </div>

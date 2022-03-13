@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
   import Page from '../components/molecules/Page.svelte';
   import Header from '../components/molecules/Header.svelte';
   import IoIosClose from 'svelte-icons/io/IoIosClose.svelte';
@@ -6,12 +7,11 @@
   import Checkbox from '../components/atoms/Checkbox.svelte';
   import Button from '../components/atoms/Button.svelte';
   import Box from '../components/atoms/Box.svelte';
-  import { createEventDispatcher } from 'svelte';
 
   const dispatch = createEventDispatcher();
 
-  const closePage = () => dispatch('onClose');
-  const applyFilters = () => dispatch('onApply', {});
+  const closePage = () => dispatch('close');
+  const applyFilters = () => dispatch('apply', {});
 </script>
 
 <Page>
@@ -44,6 +44,6 @@
   </div>
 
   <div slot="footer" class="flex w-full bg-gray-100">
-    <Button class="m-4 w-full">Apply Filter</Button>
+    <Button class="m-4 w-full" on:click={applyFilters}>Apply Filter</Button>
   </div>
 </Page>

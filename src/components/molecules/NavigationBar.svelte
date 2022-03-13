@@ -1,5 +1,8 @@
 <script lang="ts">
-  import { Link } from 'svelte-navigator';
+  import { onDestroy, onMount } from 'svelte';
+  import { Link, useLocation } from 'svelte-navigator';
+  import type { Unsubscriber } from 'svelte/store';
+
   import FaStoreAlt from 'svelte-icons/fa/FaStoreAlt.svelte';
   import FaSearch from 'svelte-icons/fa/FaSearch.svelte';
   import FaShoppingCart from 'svelte-icons/fa/FaShoppingCart.svelte';
@@ -7,9 +10,33 @@
   import FaRegUser from 'svelte-icons/fa/FaRegUser.svelte';
   import NavigationBarItem from './NavigationBarItem.svelte';
 
-  let selected = 0;
+  const location = useLocation();
 
+  let selected = 0;
   const selectItem = (item: number) => (selected = item);
+  let unsubscriber: Unsubscriber;
+
+  onMount(() => {
+    unsubscriber = location.subscribe((value) => {
+      const pathName = value.pathname.toLowerCase();
+
+      if (pathName.includes('shop')) {
+        selected = 0;
+      } else if (pathName.includes('explore')) {
+        selected = 1;
+      } else if (pathName.includes('cart')) {
+        selected = 2;
+      } else if (pathName.includes('favourite')) {
+        selected = 3;
+      } else if (pathName.includes('account')) {
+        selected = 4;
+      }
+    });
+  });
+
+  onDestroy(() => {
+    unsubscriber();
+  });
 </script>
 
 <nav

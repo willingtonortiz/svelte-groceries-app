@@ -1,12 +1,16 @@
 <script lang="ts">
   import { slide } from 'svelte/transition';
-  import GoSettings from 'svelte-icons/go/GoSettings.svelte';
   import { useNavigate } from 'svelte-navigator';
+  import { Dialog, DialogOverlay } from '@rgossiaux/svelte-headlessui';
+  import GoSettings from 'svelte-icons/go/GoSettings.svelte';
+
   import Input from '../components/atoms/Input.svelte';
   import Header from '../components/molecules/Header.svelte';
   import { PRODUCT_CATEGORIES } from '../core/mock_data';
+  import FiltersPage from './FiltersPage.svelte';
 
   const navigator = useNavigate();
+  let showFiltersButton = false;
   let showFilters = false;
 
   let categories = [
@@ -19,14 +23,14 @@
     ...PRODUCT_CATEGORIES,
   ];
 
-  const onInputType = (_: any) => {
-    showFilters = true;
-  };
-
   const onCategorySelected = (categoryId: string) =>
     navigator(`/categories/${categoryId}`);
 
-  const openFilters = () => {};
+  const onInputType = (_: any) => {
+    showFiltersButton = true;
+  };
+  const openFilters = () => (showFilters = true);
+  const closeFilters = () => (showFilters = false);
 </script>
 
 <div class="h-full">
@@ -40,7 +44,7 @@
       on:input={onInputType}
     />
 
-    {#if showFilters}
+    {#if showFiltersButton}
       <div class="ml-4 w-6" on:click={openFilters} transition:slide>
         <GoSettings />
       </div>
@@ -60,3 +64,13 @@
     {/each}
   </div>
 </div>
+
+<Dialog
+  open={showFilters}
+  class="absolute h-full w-full bg-white"
+  on:close={closeFilters}
+>
+  <DialogOverlay />
+
+  <FiltersPage on:close={closeFilters} on:apply={closeFilters} />
+</Dialog>
