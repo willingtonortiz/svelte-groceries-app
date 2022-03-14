@@ -18,7 +18,11 @@ const PRODUCT_CATEGORIES: Category[] = [
 ];
 
 export const getAllCategories = async () => {
-  await firstValueFrom(timer(2000));
+  console.log('START ALL CATEGORIES');
+
+  await firstValueFrom(timer(1000));
+
+  console.log('END ALL CATEGORIES');
 
   return [...PRODUCT_CATEGORIES, ...PRODUCT_CATEGORIES];
 };

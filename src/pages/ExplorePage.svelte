@@ -16,7 +16,7 @@
 
   const navigator = useNavigate();
 
-  const allCategories = useQuery('homeProducts', getAllCategories);
+  const allCategories = useQuery('allCategories', getAllCategories);
 
   const onCategorySelected = (categoryId: string) =>
     navigator(`/categories/${categoryId}`);
@@ -40,7 +40,7 @@
       'bg-blue-100 border-blue-300',
     ];
 
-    return colors[Math.round(Math.random() * colors.length) - 1];
+    return colors[Math.floor(Math.random() * colors.length)];
   };
 </script>
 
@@ -62,6 +62,8 @@
       </div>
     {/if}
   </div>
+
+  {$allCategories.status}
 
   {#if $allCategories.isLoading}
     <RowSkeleton class="mb-4" />
