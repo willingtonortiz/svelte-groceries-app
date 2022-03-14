@@ -63,8 +63,6 @@
     {/if}
   </div>
 
-  {$allCategories.status}
-
   {#if $allCategories.isLoading}
     <RowSkeleton class="mb-4" />
     <RowSkeleton class="mb-4" />

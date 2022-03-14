@@ -34,8 +34,6 @@
     images={['images/banner.png', 'images/banner.png', 'images/banner.png']}
   />
 
-  {$homeProducts.status}
-
   <Title title="Exclusive Offer" link="See all" />
   {#if $homeProducts.isLoading}
     <RowSkeleton />
