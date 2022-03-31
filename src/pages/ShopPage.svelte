@@ -1,6 +1,7 @@
 <script lang="ts">
   import { useNavigate } from 'svelte-navigator';
   import { useQuery } from '@sveltestack/svelte-query';
+  import { FlatToast, ToastContainer, toasts } from 'svelte-toasts';
 
   import ProductsRow from '../components/organisms/ProductsRow.svelte';
   import Title from '../components/molecules/Title.svelte';
@@ -20,6 +21,24 @@
 
   const onProductClicked = ({ detail }: CustomEvent) =>
     navigate(`/products/${detail.id}`);
+  const addProductHandler = (productId: string) => {
+    toasts.clearAll();
+
+    toasts.info({
+      title: 'Product added',
+      description: 'Product added to cart',
+      theme: 'light',
+      placement: 'bottom-center',
+      duration: 5000,
+      showProgress: true,
+      onClick: () => {
+        toasts.clearAll();
+        navigate('/cart');
+      },
+    });
+
+    addProductToCart(productId);
+  };
 </script>
 
 <div class="h-full">
@@ -40,8 +59,8 @@
   {:else}
     <ProductsRow
       products={$homeProducts.data.exclusive}
-      on:onAdd={({ detail }) => addProductToCart(detail.productId)}
-      on:onClick={onProductClicked}
+      on:onAdd={({ detail }) => addProductHandler(detail.productId)}
+      on:click={onProductClicked}
     />
   {/if}
 
@@ -51,7 +70,8 @@
   {:else}
     <ProductsRow
       products={$homeProducts.data.bestSelling}
-      on:onClick={onProductClicked}
+      on:onAdd={({ detail }) => addProductHandler(detail.productId)}
+      on:click={onProductClicked}
     />
   {/if}
 
@@ -62,7 +82,14 @@
   {:else}
     <ProductsRow
       products={$homeProducts.data.groceries}
-      on:onClick={onProductClicked}
+      on:onAdd={({ detail }) => addProductHandler(detail.productId)}
+      on:click={onProductClicked}
     />
   {/if}
 </div>
+
+<ToastContainer let:data>
+  <div class="bg-white">
+    <FlatToast {data} />
+  </div>
+</ToastContainer>

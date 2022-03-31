@@ -10,13 +10,8 @@
   export let detail = '7pcs, Priceg';
   export let price = 0;
 
-  const onClick = () => {
-    dispatch('onClick', { id });
-  };
-
-  const onAdd = () => {
-    dispatch('onAdd', { id });
-  };
+  const onClick = () => dispatch('click', { id });
+  const onAdd = () => dispatch('add', { id });
 </script>
 
 <div
@@ -35,7 +30,7 @@
     <p class="font-bold">{price}</p>
 
     <div
-      class="bg-primary w-10 text-white rounded-xl"
+      class="bg-primary w-10 text-white rounded-xl active:scale-110"
       on:click|stopPropagation={onAdd}
     >
       <IoIosAdd />

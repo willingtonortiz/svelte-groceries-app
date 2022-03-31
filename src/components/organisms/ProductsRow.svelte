@@ -34,8 +34,8 @@
         imageUrl={product.imageUrl}
         name={product.name}
         price={product.price}
-        on:onClick
-        on:onAdd={() => addProduct(product.id)}
+        on:click
+        on:add={() => addProduct(product.id)}
       />
     </SwiperSlide>
   {/each}
